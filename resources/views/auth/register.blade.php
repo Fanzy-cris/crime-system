@@ -10,20 +10,20 @@
 
 <body class="bg-white">
 	<div class="container">
-		<div class="card shadow-lg o-hidden border-0 my-5">
-			<div class="card-body p-0">
+		<div class="my-5 border-0 shadow-lg card o-hidden">
+			<div class="p-0 card-body">
 				<div class="row">
-					<div class="col-lg-5 d-none d-lg-flex bg-white"><img class="img-fluid border rounded-0" src="{{asset('img/policecrime.jpeg')}}" width="441" height="707"></div>
+					<div class="bg-white col-lg-5 d-none d-lg-flex"><img class="border img-fluid rounded-0" src="{{asset('img/policecrime.jpeg')}}" width="441" height="707"></div>
 					<div class="col-lg-7">
 						<div class="p-5">
 							<div class="text-center">
-								<h4 class="text-dark mb-4">Create an Account!</h4> </div>
+								<h4 class="mb-4 text-dark">Create an Account!</h4> </div>
 
 							<form class="user" method="POST" action="{{ route('register') }}">
                                 @csrf
-								<div class="row mb-3">
-									<div class="col-sm-6 mb-3 mb-sm-0">
-										<input class="form-control form-control-user @error('nameUser') is-invalide @enderror" type="text" id="exampleFirstName" value="{{old('nameUser')}}" placeholder="Enter First Name" name="nameUser">
+								<div class="mb-3 row">
+									<div class="mb-3 col-sm-6 mb-sm-0">
+										<input class="form-control form-control-user @error('nameUser') is-invalid @enderror" type="text" id="exampleFirstName" value="{{old('nameUser')}}" placeholder="Enter First Name" name="nameUser">
 
                                         @error('nameUser')
 
@@ -34,7 +34,7 @@
                                         @enderror
 									</div>
 									<div class="col-sm-6">
-										<input class="form-control form-control-user @error('surNameUser') is-invalide @enderror" type="text" id="exampleLastName" placeholder="Enter Last Name" name="surNameUser">
+										<input class="form-control form-control-user @error('surNameUser') is-invalid @enderror" type="text" id="exampleLastName" placeholder="Enter Last Name" name="surNameUser">
 
                                         @error('surNameUser')
                                         <span class="invalide-feedback" role="alart">
@@ -49,7 +49,7 @@
 									</div>
 								</div>
 								<div class="mb-3">
-									<input class="form-control form-control-user @error('emailUser') is-invalide @enderror" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address" name="emailUser" required>
+									<input class="form-control form-control-user @error('emailUser') is-invalid @enderror" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address" name="emailUser" required>
 
                                     @error('emailUser')
                                         <span class="invalide-feedback" role="alart">
@@ -60,10 +60,10 @@
                                     @enderror
 								</div>
 								<div class="mb-3">
-									<input class="form-control form-control-user @error('phoneUser') is-invalide @enderror" type="text" id="exampleInputEmail-1" aria-describedby="emailHelp" placeholder="Enter phone number" name="phoneUser">
+									<input class="form-control form-control-user @error('phoneUser') is-invalid @enderror" type="text" id="exampleInputEmail-1" aria-describedby="emailHelp" placeholder="Enter phone number" name="phoneUser">
 
                                     @error('phoneUser')
-                                        <span class="invalide-feedback" role="alart">
+                                        <span class="invalid-feedback" role="alart">
                                             <strong>{{$message}}</strong>  
 
                                         </span>
@@ -71,68 +71,49 @@
                                     @enderror
 								</div>
                                 <div class="mb-3">
-									<input class="form-control form-control-user @error('badgeNumUser') is-invalide @enderror" type="text" id="exampleInputEmail-1" aria-describedby="emailHelp" placeholder="Enter your badge number" name="badgeNumUser">
+									<input class="form-control form-control-user @error('badgeNumUser') is-invalid @enderror" type="text" id="exampleInputEmail-1" aria-describedby="emailHelp" placeholder="Enter your badge number" name="badgeNumUser">
 
                                     @error('badgeNumUser')
                                         <span class="invalide-feedback" role="alart">
-                                            <strong>{{$message}}</strong>  
-
+                                            <strong>{{$message}}</strong>
                                         </span>
                                         
                                     @enderror
 								</div>
-								<div class="row mb-3">
-									<div class="col-sm-6 mb-3 mb-sm-0">
-										<input class="form-control form-control-user @error('passwordUser') is-invalide @enderror" type="password" id="examplePasswordInput" placeholder="Password" name="passwordUser">
+								<div class="mb-3 row">
+									<div class="mb-3 col-sm-6 mb-sm-0">
+										<input class="form-control form-control-user @error('password') is-invalid @enderror" type="password" id="examplePasswordInput" placeholder="Password" name="password">
 
-                                        @error('passwordUser')
+                                        @error('password')
                                         <span class="invalide-feedback" role="alart">
-                                            <strong>{{$message}}</strong>  
-
+                                            <strong>{{$message}}</strong>
                                         </span>
                                         
                                         @enderror
 									</div>
 									<div class="col-sm-6">
-										<input class="form-control form-control-user @error('passwordUser') is-invalide @enderror" type="password" id="exampleRepeatPasswordInput" placeholder="Repeat Password" name="password_repeat">
-
-                                        @error('password_repeat')
+										<input class="form-control form-control-user @error('password_confirmation') is-invalid @enderror" type="password" id="exampleRepeatPasswordInput" placeholder="Repeat Password" name="password_confirmation" autocomplete="new-password">
+                                        @error('password_confirmation')
                                         <span class="invalide-feedback" role="alart">
                                             <strong>{{$message}}</strong>  
-
                                         </span>
 										@enderror
 									</div>
 								</div>
 								<div class="mb-3">
-									<select class="form-select form-control-user">
+									<select class="form-select form-control-user @error('TypeId') is-invalid @enderror" name="TypeId">
 
-										@foreach ($Type as $Type )
-											
-										
-										<optgroup value="{{$Type->id}}">{{$Type->nameType}}
-
+										@foreach ($Types as $Type )
+											<option value="{{$Type->id}}">{{$Type->nameType}}</option>
 										@endforeach
-
-											<option value="12" selected="">HEAD</option>
-											<option value="13">IN CHARGE</option>
-											<option value="14">POLICE</option>
-										</optgroup>
 									</select>
 								</div>
 								<div class="mb-3">
-									<select class="form-select form-control-user">
+									<select class="form-select form-control-user @error('StationId') is-invalid @enderror" name="StationId">
 
-										@foreach ( $station as $station  )
-											
-										
-										<optgroup value="{{$station->id}}">{{$station->stationName}}
-
-									 @endforeach
-											<option value="12" selected="">This is item 1</option>
-											<option value="13">This is item 2</option>
-											<option value="14">This is item 3</option>
-										</optgroup>
+										@foreach ( $Stations as $Station  )
+											<option value="{{$Station->id}}">{{$Station->stationName}}</option>
+									 	@endforeach
 									</select>
 								</div>
 								<button class="btn btn-primary bg-success d-block btn-user w-100" type="submit">Register Account</button>

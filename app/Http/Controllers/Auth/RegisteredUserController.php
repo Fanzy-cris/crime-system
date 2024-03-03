@@ -24,10 +24,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $station = PoliceStation::all();
-        $Type = Type::all();
+        $Stations = PoliceStation::all();
+        $Types = Type::all();
 
-        return view('auth.register', compact('Type', 'station'));
+        return view('auth.register', compact('Types', 'Stations'));
         
     }
 
@@ -39,15 +39,26 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'nameUser' => ['required', 'string', 'max:255'],
+            'surNameUser' => ['required', 'string', 'max:255'],
+            'phoneUser' => ['required', 'numeric'],
+            'badgeNumUser' => ['required', 'string', 'max:255'],
+            'TypeId' => ['required', 'integer', 'max:255'],
+            'StationId' => ['required', 'integer', 'max:255'],
+            'emailUser' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        //dd($request->TypeId);
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'nameUser' => $request->nameUser,
+            'surNameUser' => $request->surNameUser,
+            'phoneUser' => $request->phoneUser,
+            'badgeNumUser' => $request->badgeNumUser,
+            'Type_id' => $request->TypeId,
+            'police_station_id' => $request->StationId,
+            'emailUser' => $request->emailUser,
+            'passwordUser' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
