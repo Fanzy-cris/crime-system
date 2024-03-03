@@ -94,7 +94,7 @@
                                         @enderror
 									</div>
 									<div class="col-sm-6">
-										<input class="form-control form-control-user @error('passwordUser') is-invalide @enderror" type="password" id="exampleRepeatPasswordInput" placeholder="Repeat Password" name="password_repeat">
+										<input class="form-control form-control-user @error('password-repeat') is-invalide @enderror" type="password" id="exampleRepeatPasswordInput" placeholder="Repeat Password" name="password_repeat">
 
                                         @error('password_repeat')
                                         <span class="invalide-feedback" role="alart">
@@ -107,32 +107,28 @@
 								<div class="mb-3">
 									<select class="form-select form-control-user">
 
-										@foreach ($Type as $Type )
-											
 										
-										<optgroup value="{{$Type->id}}">{{$Type->nameType}}
-
+											
+										@foreach ($Types as $Type )
+										<option value="{{$Type->id}}">{{$Type->nameType}}</option>
+										
 										@endforeach
 
-											<option value="12" selected="">HEAD</option>
-											<option value="13">IN CHARGE</option>
-											<option value="14">POLICE</option>
-										</optgroup>
+										
 									</select>
 								</div>
 								<div class="mb-3">
 									<select class="form-select form-control-user">
 
-										@foreach ( $station as $station  )
+										
+											
+										@foreach ( $Stations as $station  )
+										<option value="{{$station->id}}">{{$station->stationName}}</option>
+										@endforeach
+
+									 
 											
 										
-										<optgroup value="{{$station->id}}">{{$station->stationName}}
-
-									 @endforeach
-											<option value="12" selected="">This is item 1</option>
-											<option value="13">This is item 2</option>
-											<option value="14">This is item 3</option>
-										</optgroup>
 									</select>
 								</div>
 								<button class="btn btn-primary bg-success d-block btn-user w-100" type="submit">Register Account</button>

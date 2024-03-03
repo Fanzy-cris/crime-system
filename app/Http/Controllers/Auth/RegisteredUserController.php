@@ -24,8 +24,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $station = PoliceStation::all();
-        $Type = Type::all();
+        $Stations = PoliceStation::all();
+        $Types = Type::all();
 
         return view('auth.register', compact('Type', 'station'));
         
@@ -39,9 +39,15 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'nameUser' => ['required', 'string', 'max:255'],
+            'surNameUser' => ['required', 'string', 'max:255'],
+            
+            'emailUser' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'phoneUser' => ['required', 'integer', 'max:255'],
+            'badgeNumberUser' => ['required', 'integer', 'max:255'],
+            'passwordUser' => ['required', 'confirmed', Rules\Password::defaults()],
+            'Type-id' => ['required', 'integer', 'max:255'],
+            'police-station-id' => ['required', 'integer', 'max:255'],
         ]);
 
         $user = User::create([
