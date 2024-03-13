@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
             'badgeNumUser' => ['required', 'string', 'max:255'],
             'TypeId' => ['required', 'integer', 'max:255'],
             'StationId' => ['required', 'integer', 'max:255'],
-            'emailUser' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -57,7 +57,7 @@ class RegisteredUserController extends Controller
             'badgeNumUser' => $request->badgeNumUser,
             'Type_id' => $request->TypeId,
             'police_station_id' => $request->StationId,
-            'emailUser' => $request->emailUser,
+            'email' => $request->email,
             'passwordUser' => Hash::make($request->password),
         ]);
 

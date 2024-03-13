@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('surNameUser');
             $table->integer('badgeNumUser');
             $table->integer('phoneUser');
-            $table->string('emailUser')->unique();
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('passwordUser');
             $table->rememberToken();

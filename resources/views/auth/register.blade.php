@@ -49,9 +49,9 @@
 									</div>
 								</div>
 								<div class="mb-3">
-									<input class="form-control form-control-user @error('emailUser') is-invalid @enderror" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address" name="emailUser" required>
+									<input class="form-control form-control-user @error('email') is-invalid @enderror" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address" name="email" required>
 
-                                    @error('emailUser')
+                                    @error('email')
                                         <span class="invalide-feedback" role="alart">
                                             <strong>{{$message}}</strong>  
 
