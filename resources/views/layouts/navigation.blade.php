@@ -5,44 +5,44 @@
         </a>
         <hr class="sidebar-divider my-0">
         <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('dashboard') }}">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
                     <i class="fas fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('profile') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('profile') }}">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('profile') ? 'active' : '' }}" href="{{ route('profile') }}">
                     <i class="fas fa-user"></i>
                     <span>Profile</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('user') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('user') }}">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('user') ? 'active' : '' }}" href="{{ route('user') }}">
                     <i class="fas fa-users"></i>
                     <span>User</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('complaint') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('complaint') }}">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('complaint') ? 'active' : '' }}" href="{{ route('complaint') }}">
                     <i class="fas fa-newspaper"></i>
                     <span>Complaint</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('station') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('station') }}">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('station') ? 'active' : '' }}" href="{{ route('station') }}">
                     <i class="fas fa-home"></i>
                     <span>Station</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('town') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('town') }}">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('town') ? 'active' : '' }}" href="{{ route('town') }}">
                     <i class="fas fa-map-marker"></i>
                     <span>Town</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('type') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('type') }}">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('type') ? 'active' : '' }}" href="{{ route('type') }}">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Type</span>
                 </a>

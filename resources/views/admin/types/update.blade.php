@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title', 'user edit')
+@section('title', 'Types edit')
 @section('content')
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Create User</h3>
+    <h3 class="text-dark mb-4">Update User</h3>
     <div class="row mb-3">
         <div class="col-lg-4">
             <div class="card mb-3">
@@ -88,7 +88,7 @@
                                         <div class="mb-3"><label class="form-label" for="last_name"><strong>Repeat Password</strong></label><input class="form-control" type="text" id="last_name-2" placeholder="*****" name="last_name"></div>
                                     </div>
                                 </div>
-                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Register</button></div>
+                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">SAVE</button></div>
                             </form>
                         </div>
                     </div>

@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title', 'user')
+@section('title', 'Towns')
 @section('content')
     <div class="container-fluid">
-        <h3 class="text-dark mb-4">Team</h3>
+        <h3 class="text-dark mb-4">Town</h3>
         <div class="card shadow">
             <div class="card-header d-flex justify-content-between align-items-center align-items-xxl-center py-3">
                 <p class="text-primary m-0 fw-bold">Employee Info</p><button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
@@ -28,19 +28,17 @@
                     <table class="table table-striped-columns table-hover table-sm my-0" id="dataTable">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Phone</th>
-                                <th>Age</th>
+                                <th>City Name</th>
+                                <th>Quarter</th>
+                                <th>house/streat No</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>676345653</td>
-                                <td>33</td>
+                                <td>douala</td>
+                                <td>bepanda</td>
+                                <td>00002</td>
                                 <td>
                                     <div class="btn-group" role="group"><button class="btn btn-primary" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" type="button" title="EDIT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em" height="1em" fill="currentColor" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="EDIT">
                                                 <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
@@ -75,5 +73,5 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 @endsection

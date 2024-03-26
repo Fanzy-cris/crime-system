@@ -28,11 +28,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::get('/complaint/create', [ComplaintController::class, 'create'])->name('complaint.create');
+Route::post('/complaint', [ComplaintController::class, 'store'])->name('complaint.store');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    //Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    //Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::patch('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
@@ -67,8 +70,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/policeStation/{id}/destroy', [PoliceStationController::class, 'destroy'])->name('station.destroy');
 
     Route::get('/complaint', [ComplaintController::class, 'index'])->name('complaint');
-    Route::get('/complaint/create', [ComplaintController::class, 'create'])->name('complaint.create');
-    Route::post('/complaint', [ComplaintController::class, 'store'])->name('complaint.store');
     Route::get('/complaint/{id}/show', [ComplaintController::class, 'show'])->name('complaint.show');
     Route::get('/complaint/{id}/edit', [ComplaintController::class, 'edit'])->name('complaint.edit');
     Route::put('/complaint/{id}/update', [ComplaintController::class, 'update'])->name('complaint.update');

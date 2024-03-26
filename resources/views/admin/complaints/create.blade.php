@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'user edit')
+@section('title', 'Complaint creation')
 @section('content')
     <div class="container-fluid">
-        <h3 class="text-dark mb-4">Update User</h3>
+        <h3 class="text-dark mb-4">Create User</h3>
         <div class="row mb-3">
             <div class="col-lg-4">
                 <div class="card mb-3">
-                    <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="{{asset('img/dogs/download%20(1).jpeg')}}" width="160" height="160">
+                    <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="../assets/img/dogs/download%20(1).jpeg" width="160" height="160">
                         <div class="mb-3"></div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                                             <div class="mb-3"><label class="form-label" for="last_name"><strong>Repeat Password</strong></label><input class="form-control" type="text" id="last_name-2" placeholder="*****" name="last_name"></div>
                                         </div>
                                     </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">SAVE</button></div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Register</button></div>
                                 </form>
                             </div>
                         </div>
@@ -96,5 +96,5 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
 @endsection

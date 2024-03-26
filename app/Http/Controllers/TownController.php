@@ -19,7 +19,7 @@ class TownController extends Controller
         if ($this->checkIfAdmin()) {
             $towns = Town::all();
 
-            return view('towns.index', compact('towns'));  
+            return view('admin.towns.index', compact('towns'));  
             
         }
         return view('error.index');
@@ -35,7 +35,7 @@ class TownController extends Controller
     public function create()
     {
         if ($this->checkIfAdmin()) {
-            return view('towns.create'); 
+            return view('admin.towns.create'); 
             
         }
         return view('error.index');
@@ -61,7 +61,7 @@ class TownController extends Controller
             $town->townName = $request->input('townName');
             $town->save();
     
-            return redirect()->route('towns.index');  
+            return redirect()->route('admin.towns.index');  
         }
         return view('error.index');
 
@@ -80,7 +80,7 @@ class TownController extends Controller
             
             $town = Town::findOrFail($id);
 
-            return view('towns.show', compact('town')); 
+            return view('admin.towns.show', compact('town')); 
         }
         return view('error.index');
 
@@ -99,7 +99,7 @@ class TownController extends Controller
             
             $town = Town::findOrFail($id);
 
-            return view('towns.edit', compact('town')); 
+            return view('admin.towns.edit', compact('town')); 
         }
         return view('error.index');
 
@@ -125,7 +125,7 @@ class TownController extends Controller
             $town->townName = $request->input('townName');
             $town->save();
     
-            return redirect()->route('towns.index');
+            return redirect()->route('admin.towns.index');
             
         }
         return view('error.index');
@@ -146,7 +146,7 @@ class TownController extends Controller
             $town = Town::findOrFail($id);
             $town->delete();
     
-            return redirect()->route('towns.index');  
+            return redirect()->route('admin.towns.index');  
             
         }
         return view('error.index');
@@ -156,7 +156,7 @@ class TownController extends Controller
 
     private function checkIfAdmin()
     {
-        if (auth()->user()->type->nameType == "admin") {
+        if (auth()->user()->type->nameType == "Admin") {
             return true;
         }
         return false;

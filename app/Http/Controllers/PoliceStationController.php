@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Town;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\PoliceStation;
-use App\Models\Town;
+use Illuminate\Support\Facades\Auth;
 
 class PoliceStationController extends Controller
 {
@@ -168,7 +170,7 @@ class PoliceStationController extends Controller
 
     private function checkIfAdmin()
     {
-        if (auth()->user()->type->nameType == "admin") {
+        if (auth()->user()->type->nameType == "Admin") {
             return true;
         }
         return false;

@@ -18,7 +18,7 @@ class TypeController extends Controller
         if ($this->checkIfAdmin()) {
             $types = Type::all();
 
-            return view('types.index', compact('types'));     
+            return view('admin.types.index', compact('types'));     
         }
         return view('error.index');
 
@@ -34,7 +34,7 @@ class TypeController extends Controller
     {
         if ($this->checkIfAdmin()) {
            
-            return view('types.create'); 
+            return view('admin.types.create'); 
             
         }
         return view('error.index');
@@ -58,7 +58,7 @@ class TypeController extends Controller
             $type->nameType = $request->input('nameType');
             $type->save();
     
-            return redirect()->route('types.index'); 
+            return redirect()->route('admin.types.index'); 
         }
         return view('error.index');
 
@@ -76,7 +76,7 @@ class TypeController extends Controller
         if ($this->checkIfAdmin()) {
             $type = Type::findOrFail($id);
 
-            return view('types.show', compact('type'));  
+            return view('admin.types.show', compact('type'));  
         }
         return view('error.index');
 
@@ -95,7 +95,7 @@ class TypeController extends Controller
 
             $type = Type::findOrFail($id);
 
-            return view('types.edit', compact('type')); 
+            return view('admin.types.edit', compact('type')); 
             
         }
         return view('error.index');
@@ -121,7 +121,7 @@ class TypeController extends Controller
             $type->nameType = $request->input('nameType');
             $type->save();
     
-            return redirect()->route('types.index'); 
+            return redirect()->route('admin.types.index'); 
         }
         return view('error.index');
 
@@ -141,7 +141,7 @@ class TypeController extends Controller
             $type = Type::findOrFail($id);
             $type->delete();
     
-            return redirect()->route('types.index');
+            return redirect()->route('admin.types.index');
             
         }
         return view('error.index');
@@ -151,7 +151,7 @@ class TypeController extends Controller
 
     private function checkIfAdmin()
     {
-        if (auth()->user()->type->nameType == "admin") {
+        if (auth()->user()->type->nameType == "Admin") {
             return true;
         }
         return false;

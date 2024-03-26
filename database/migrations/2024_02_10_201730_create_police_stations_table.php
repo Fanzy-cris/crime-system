@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('police_stations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('town_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
             $table->string('stationName');
-            $table->float('stationLongitude');
-            $table->float('stationLatitude');
+            $table->float('stationLongitude')->nullable();
+            $table->float('stationLatitude')->nullable();
+            $table->timestamps();
 
         });
     }

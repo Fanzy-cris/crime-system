@@ -21,10 +21,10 @@ class ComplaintController extends Controller
 
         // Récupérer les plaintes en fonction du nom de la station
         $complaints = Complaints::whereHas('policeStation', function ($query) use ($nameStation) {
-            $query->where('name', $nameStation);
+            $query->where('stationName', $nameStation);
         })->get();
 
-        return view('complaints.index', compact('complaints'));
+        return view('admin.complaints.index', compact('complaints'));
     }
 
     /**

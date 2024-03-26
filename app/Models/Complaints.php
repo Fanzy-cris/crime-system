@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Complaints extends Model
 {
     use HasFactory;
-    public function Complaints (){
-        return $this->belongsTo(Complaints::class);
+    public function policeStation (){
+        return $this->belongsTo(PoliceStation::class);
     }
 }
