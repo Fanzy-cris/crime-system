@@ -4,11 +4,6 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	<title>Register - POLICE SYSTEM</title>
-	<link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-	<html data-bs-theme="light" lang="en">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	<title>Login - POLICE SYSTEM</title>
 	<link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('css/Nunito.css')}}"> </head>
@@ -26,11 +21,12 @@
 									<div class="text-center">
 										<h4 class="text-dark mb-4">Welcome Back!</h4> </div>
 									<form class="user"  method="POST" action="{{ route('login') }}">
+										@csrf
 										<div class="mb-3">
-											<input class="form-control form-control-user @error('emailUser') is-invalide @enderror" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email" name="emailUser">
+											<input class="form-control form-control-user @error('email') is-invalide @enderror" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email" name="email">
 
                                               
-									        @error ('emailUser')
+									        @error ('email')
                                               <span class="invalide-feedback" role="alart">
                                                 <strong>{{$message}}</strong> 
 
@@ -40,9 +36,9 @@
                                         
 										</div>
 										<div class="mb-3">
-											<input class="form-control form-control-user @error('passwordUser') is-invalide @enderror" type="password" id="exampleInputPassword" placeholder="Password" name="passwordUser">
+											<input class="form-control form-control-user @error('password') is-invalide @enderror" type="password" id="exampleInputPassword" placeholder="Password" name="password">
 
-                                            @error('passwordUser')
+                                            @error('password')
                                               <span class="invalide-feedback" role="alart">
                                                 <strong>{{$message}}</strong> 
 

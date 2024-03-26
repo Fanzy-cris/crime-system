@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'nameUser' => ['required', 'string', 'max:255'],
             'surNameUser' => ['required', 'string', 'max:255'],
-            'phoneUser' => ['required', 'numeric'],
+            'phoneUser' => ['required', 'regex:/^[0-9\s\-\(\)]{7,10}$/', 'max:10'],
             'badgeNumUser' => ['required', 'string', 'max:255'],
             'TypeId' => ['required', 'integer', 'max:255'],
             'StationId' => ['required', 'integer', 'max:255'],
@@ -58,7 +58,7 @@ class RegisteredUserController extends Controller
             'Type_id' => $request->TypeId,
             'police_station_id' => $request->StationId,
             'email' => $request->email,
-            'passwordUser' => Hash::make($request->password),
+            'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));

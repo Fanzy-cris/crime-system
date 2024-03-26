@@ -40,7 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'Type_id',
         'police_station_id',
         'email',
-        'passwordUser',
+        'password',
     ];
 
     /**
