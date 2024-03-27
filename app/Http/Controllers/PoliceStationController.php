@@ -21,7 +21,7 @@ class PoliceStationController extends Controller
         if ($this->checkIfAdmin()) {
  
             $policeStations = PoliceStation::with('town')->get();
-            return view('police_stations.index', compact('policeStations')); 
+            return view('admin.stations.index', compact('policeStations')); 
 
         }
         return view('error.index');
@@ -43,7 +43,7 @@ class PoliceStationController extends Controller
         return view('error.index');
         $towns = Town::all();
 
-        return view('police_stations.create', compact('towns'));
+        return view('admin.stations.create', compact('towns'));
     }
 
     /**
@@ -74,7 +74,7 @@ class PoliceStationController extends Controller
         $policeStation->stationLatitude = $request->input('stationLatitude');
         $policeStation->save();
 
-        return redirect()->route('police_stations.index');
+        return redirect()->route('admin.stations.index');
     }
 
     /**
@@ -93,7 +93,7 @@ class PoliceStationController extends Controller
 
         $policeStation = PoliceStation::findOrFail($id);
 
-        return view('police_stations.show', compact('policeStation'));
+        return view('admin.stations.show', compact('policeStation'));
     }
 
     /**
@@ -113,7 +113,7 @@ class PoliceStationController extends Controller
         $policeStation = PoliceStation::findOrFail($id);
         $towns = Town::all();
 
-        return view('police_stations.edit', compact('policeStation', 'towns'));
+        return view('admin.stations.edit', compact('policeStation', 'towns'));
     }
 
     /**
@@ -145,7 +145,7 @@ class PoliceStationController extends Controller
         $policeStation->stationLatitude = $request->input('stationLatitude');
         $policeStation->save();
 
-        return redirect()->route('police_stations.index');
+        return redirect()->route('admin.stations.index');
     }
 
     /**
@@ -165,7 +165,7 @@ class PoliceStationController extends Controller
         $policeStation = PoliceStation::findOrFail($id);
         $policeStation->delete();
 
-        return redirect()->route('police_stations.index');
+        return redirect()->route('admin.stations.index');
     }
 
     private function checkIfAdmin()

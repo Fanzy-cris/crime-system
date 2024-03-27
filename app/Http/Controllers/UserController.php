@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $users = User::with('policeStation', 'type')->get();
 
-        return view('users.index', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends Controller
         $policeStations = \App\Models\PoliceStation::all();
         $types = \App\Models\Type::all();
 
-        return view('users.create', compact('policeStations', 'types'));
+        return view('admin.users.create', compact('policeStations', 'types'));
     }
 
     /**
@@ -57,7 +57,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -94,7 +94,7 @@ class UserController extends Controller
         $policeStations = \App\Models\PoliceStation::all();
         $types = \App\Models\Type::all();
 
-        return view('users.edit', compact('user', 'policeStations', 'types'));
+        return view('admin.users.edit', compact('user', 'policeStations', 'types'));
     }
 
     /**
@@ -124,7 +124,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        return redirect()->route('users.show', $id);
+        return redirect()->route('admin.users.show', $id);
     }
 
     /**
@@ -138,7 +138,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
 
