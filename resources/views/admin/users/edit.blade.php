@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Types creation')
+@section('title', 'user edit')
 @section('content')
     <div class="container-fluid">
-        <h3 class="text-dark mb-4">Create Type</h3>
+        <h3 class="text-dark mb-4">Update User</h3>
         <div class="row mb-3">
             <div class="col-lg-4">
                 <div class="card mb-3">
-                    <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="../assets/img/dogs/police1.jpeg" width="261" height="306">
+                    <div class="card-body text-center shadow" style="height: 478px;"><img class="rounded-circle mb-3 mt-4" src="../assets/img/dogs/police1.jpeg" width="258" height="292">
                         <div class="mb-3"></div>
                     </div>
                 </div>
@@ -46,41 +46,49 @@
                     <div class="col">
                         <div class="card shadow mb-3">
                             <div class="card-header py-3">
-                                <p class="text-primary m-0 fw-bold">create type</p>
+                                <p class="text-primary m-0 fw-bold">User Fields</p>
                             </div>
                             <div class="card-body">
                                 <form>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="first_name"><strong>type Name</strong></label><input class="form-control" type="text" id="first_name-1" name="nameType"></div>
+                                            <div class="mb-3"><label class="form-label" for="username"><strong>Phone Number</strong></label><input class="form-control" type="text" id="username-1" placeholder="user.name" name="username"></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="last_name"><strong>type sur Name</strong></label><input class="form-control" type="text" id="last_name-1" name="surNameType"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>type Phone Number</strong></label><input class="form-control" type="text" id="username-1" placeholder="user.name" name="phoneType"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>type Email</strong></label><input class="form-control" type="email" id="email-1" name="emailType"></div>
+                                            <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email-1" placeholder="user@example.com" name="email"></div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="first_name"><strong>type Badge Number</strong></label><input class="form-control" type="text" id="first_name-3" name="badgeNumType"></div>
+                                            <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name-1" placeholder="John" name="first_name"></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="last_name"><strong>type Possition</strong></label><select class="form-select">
+                                            <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name-1" placeholder="Doe" name="last_name"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" for="first_name"><strong>Badg Number</strong></label><input class="form-control" type="text" id="first_name-3" name="first_name"></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" for="last_name"><strong>Possition</strong></label><select class="form-select">
                                                     <optgroup label="This is a group">
-                                                        <option value="12" selected="">Police Head</option>
-                                                        <option value="13">police In Charge</option>
-                                                        <option value="14">Police</option>
+                                                        <option value="12" selected="">This is item 1</option>
+                                                        <option value="13">This is item 2</option>
+                                                        <option value="14">This is item 3</option>
                                                     </optgroup>
                                                 </select></div>
                                         </div>
                                     </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">create</button></div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" for="first_name"><strong>Password</strong></label><input class="form-control" type="text" id="first_name-2" placeholder="*****" name="first_name"></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" for="last_name"><strong>Repeat Password</strong></label><input class="form-control" type="text" id="last_name-2" placeholder="*****" name="last_name"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">SAVE</button></div>
                                 </form>
                             </div>
                         </div>
@@ -88,5 +96,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>  
 @endsection

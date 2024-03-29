@@ -6,8 +6,10 @@
     <div class="row mb-3">
         <div class="col-lg-4">
             <div class="card mb-3">
-                <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="{{asset('img/dogs/download%20(1).jpeg')}}" width="160" height="160">
-                    <div class="mb-3"></div>
+                <div class="card-body text-center shadow" style="height: 476px;"><img class="rounded-circle mb-3 mt-4" src="../assets/img/dogs/police1.jpeg" width="259" height="262" style="padding: 3px;padding-top: 0px;margin-top: 0px;margin-bottom: 13px;">
+                    <div class="mb-3">
+                        <h1>welcome to crime report system</h1>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,5 +98,5 @@
             </div>
         </div>
     </div>
-</div>    
+</div>  
 @endsection

@@ -6,7 +6,7 @@
         <div class="row mb-3">
             <div class="col-lg-4">
                 <div class="card mb-3">
-                    <div class="card-body text-center bg-primary shadow"><img class="bg-primary border rounded-circle" src="{{asset('img/download%20(1).jpeg')}}" width="160" height="160">
+                    <div class="card-body text-center bg-primary shadow" style="background: var(--bs-card-cap-bg);"><img class="bg-primary border rounded-circle" src="../assets/img/pexels-photo-7785098.jpeg" width="253" height="292">
                         <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Change Photo</button></div>
                     </div>
                 </div>
@@ -83,5 +83,5 @@
             </div>
         </div>
         <div class="card shadow mb-5"></div>
-    </div>    
+    </div>  
 @endsection

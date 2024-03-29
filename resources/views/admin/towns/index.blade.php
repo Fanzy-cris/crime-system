@@ -2,14 +2,12 @@
 @section('title', 'Towns')
 @section('content')
     <div class="container-fluid">
-        <h3 class="text-dark mb-4">Town</h3>
+        <h3 class="text-dark mb-4">Station&nbsp;</h3>
         <div class="card shadow">
-            <div class="card-header d-flex justify-content-between align-items-center align-items-xxl-center py-3">
-                <p class="text-primary m-0 fw-bold">Employee Info</p><button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
+            <div class="card-header d-flex justify-content-between align-items-center align-items-xxl-center py-3"><button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
                         <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
                         <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"></path>
-                    </svg>&nbsp;ADD</button>
-            </div>
+                    </svg>&nbsp;ADD</button></div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 text-nowrap">
@@ -28,17 +26,17 @@
                     <table class="table table-striped-columns table-hover table-sm my-0" id="dataTable">
                         <thead>
                             <tr>
-                                <th>City Name</th>
-                                <th>Quarter</th>
-                                <th>house/streat No</th>
+                                <th>Station Name</th>
+                                <th>Station latitude</th>
+                                <th>Station longitude</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>douala</td>
-                                <td>bepanda</td>
-                                <td>00002</td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <div class="btn-group" role="group"><button class="btn btn-primary" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" type="button" title="EDIT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em" height="1em" fill="currentColor" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="EDIT">
                                                 <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
