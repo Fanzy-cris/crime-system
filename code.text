@@ -1,0 +1,4 @@
+1- php artisan migrate
+2- php artisan db:seed
+
+php artisan make:seeder NameSeeder
