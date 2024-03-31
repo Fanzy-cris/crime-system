@@ -27,7 +27,7 @@
 
                                         @error('nameUser')
 
-                                           <span class="invalide-feedback" role="alart">
+                                           <span class="invalide-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                            </span>
                                             
@@ -37,7 +37,7 @@
 										<input class="form-control form-control-user @error('surNameUser') is-invalid @enderror" type="text" id="exampleLastName" placeholder="Enter Last Name" name="surNameUser">
 
                                         @error('surNameUser')
-                                        <span class="invalide-feedback" role="alart">
+                                        <span class="invalide-feedback" role="alert">
                                             <strong>{{$message}}</strong>  
 
                                         </span>
@@ -52,7 +52,7 @@
 									<input class="form-control form-control-user @error('email') is-invalid @enderror" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address" name="email" required>
 
                                     @error('email')
-                                        <span class="invalide-feedback" role="alart">
+                                        <span class="invalide-feedback" role="alert">
                                             <strong>{{$message}}</strong>  
 
                                         </span>
@@ -63,7 +63,7 @@
 									<input class="form-control form-control-user @error('phoneUser') is-invalid @enderror" type="text" id="exampleInputEmail-1" aria-describedby="emailHelp" placeholder="Enter phone number" name="phoneUser">
 
                                     @error('phoneUser')
-                                        <span class="invalid-feedback" role="alart">
+                                        <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>  
 
                                         </span>
@@ -74,7 +74,7 @@
 									<input class="form-control form-control-user @error('badgeNumUser') is-invalid @enderror" type="text" id="exampleInputEmail-1" aria-describedby="emailHelp" placeholder="Enter your badge number" name="badgeNumUser">
 
                                     @error('badgeNumUser')
-                                        <span class="invalide-feedback" role="alart">
+                                        <span class="invalide-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                         
@@ -85,7 +85,7 @@
 										<input class="form-control form-control-user @error('password') is-invalid @enderror" type="password" id="examplePasswordInput" placeholder="Password" name="password">
 
                                         @error('password')
-                                        <span class="invalide-feedback" role="alart">
+                                        <span class="invalide-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                         
@@ -94,7 +94,7 @@
 									<div class="col-sm-6">
 										<input class="form-control form-control-user @error('password_confirmation') is-invalid @enderror" type="password" id="exampleRepeatPasswordInput" placeholder="Repeat Password" name="password_confirmation" autocomplete="new-password">
                                         @error('password_confirmation')
-                                        <span class="invalide-feedback" role="alart">
+                                        <span class="invalide-feedback" role="alert">
                                             <strong>{{$message}}</strong>  
                                         </span>
 										@enderror

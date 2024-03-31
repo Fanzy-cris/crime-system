@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('town_id')->constrained()->onDelete('cascade');
             $table->string('stationName');
-            $table->float('stationLongitude')->nullable();
-            $table->float('stationLatitude')->nullable();
             $table->timestamps();
 
         });

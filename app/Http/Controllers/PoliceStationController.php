@@ -20,7 +20,7 @@ class PoliceStationController extends Controller
     {
         if ($this->checkIfAdmin()) {
  
-            $policeStations = PoliceStation::with('town')->get();
+            $policeStations = PoliceStation::where('stationName','!=','Admin')->with('town')->paginate(5);
             return view('admin.stations.index', compact('policeStations')); 
 
         }
@@ -38,12 +38,12 @@ class PoliceStationController extends Controller
     {
         if ($this->checkIfAdmin()) {
             
+            $towns = Town::where('townName','!=','Admin')->get();
+
+            return view('admin.stations.create', compact('towns'));
             
         }
         return view('error.index');
-        $towns = Town::all();
-
-        return view('admin.stations.create', compact('towns'));
     }
 
     /**
@@ -55,26 +55,22 @@ class PoliceStationController extends Controller
     public function store(Request $request)
     {
         if ($this->checkIfAdmin()) {
+        
+            $request->validate([
+                'town_id' => 'required|integer',
+                'stationName' => 'required|string|max:255',
+            ]);
+    
+            $policeStation = new PoliceStation();
+            $policeStation->town_id = $request->input('town_id');
+            $policeStation->stationName = $request->input('stationName');
+            $policeStation->save();
+    
+            return redirect()->route('station')->with('message', 'Success');
             
             
         }
         return view('error.index');
-        
-        $request->validate([
-            'town_id' => 'required|integer',
-            'stationName' => 'required|string|max:255',
-            'stationLongitude' => 'required|numeric',
-            'stationLatitude' => 'required|numeric',
-        ]);
-
-        $policeStation = new PoliceStation();
-        $policeStation->town_id = $request->input('town_id');
-        $policeStation->stationName = $request->input('stationName');
-        $policeStation->stationLongitude = $request->input('stationLongitude');
-        $policeStation->stationLatitude = $request->input('stationLatitude');
-        $policeStation->save();
-
-        return redirect()->route('admin.stations.index');
     }
 
     /**
@@ -87,13 +83,12 @@ class PoliceStationController extends Controller
     {
         if ($this->checkIfAdmin()) {
             
-            
+            $policeStation = PoliceStation::findOrFail($id);
+
+            return view('admin.stations.show', compact('policeStation')); 
         }
         return view('error.index');
-
-        $policeStation = PoliceStation::findOrFail($id);
-
-        return view('admin.stations.show', compact('policeStation'));
+        
     }
 
     /**
@@ -105,15 +100,15 @@ class PoliceStationController extends Controller
     public function edit($id)
     {
         if ($this->checkIfAdmin()) {
+
+            $policeStation = PoliceStation::findOrFail($id);
+            $towns = Town::where('townName','!=','Admin')->get();
+    
+            return view('admin.stations.edit', compact('policeStation', 'towns'));
             
             
         }
         return view('error.index');
-
-        $policeStation = PoliceStation::findOrFail($id);
-        $towns = Town::all();
-
-        return view('admin.stations.edit', compact('policeStation', 'towns'));
     }
 
     /**
@@ -126,26 +121,22 @@ class PoliceStationController extends Controller
     public function update(Request $request, $id)
     {
         if ($this->checkIfAdmin()) {
+
+            $request->validate([
+                'town_id' => 'required|integer',
+                'stationName' => 'required|string|max:255',
+            ]);
+    
+            $policeStation = PoliceStation::findOrFail($id);
+            $policeStation->town_id = $request->input('town_id');
+            $policeStation->stationName = $request->input('stationName');
+            $policeStation->save();
+    
+            return redirect()->route('station')->with('message', 'Success');
             
             
         }
         return view('error.index');
-
-        $request->validate([
-            'town_id' => 'required|integer',
-            'stationName' => 'required|string|max:255',
-            'stationLongitude' => 'required|numeric',
-            'stationLatitude' => 'required|numeric',
-        ]);
-
-        $policeStation = PoliceStation::findOrFail($id);
-        $policeStation->town_id = $request->input('town_id');
-        $policeStation->stationName = $request->input('stationName');
-        $policeStation->stationLongitude = $request->input('stationLongitude');
-        $policeStation->stationLatitude = $request->input('stationLatitude');
-        $policeStation->save();
-
-        return redirect()->route('admin.stations.index');
     }
 
     /**
@@ -157,15 +148,13 @@ class PoliceStationController extends Controller
     public function destroy($id)
     {
         if ($this->checkIfAdmin()) {
-            
-            
+
+            $policeStation = PoliceStation::findOrFail($id);
+            $policeStation->delete();
+    
+            return redirect()->route('station')->with('message', 'Success');
         }
         return view('error.index');
-        
-        $policeStation = PoliceStation::findOrFail($id);
-        $policeStation->delete();
-
-        return redirect()->route('admin.stations.index');
     }
 
     private function checkIfAdmin()

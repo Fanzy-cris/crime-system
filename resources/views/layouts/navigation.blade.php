@@ -29,24 +29,26 @@
                     <span>Complaint</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('station') ? 'active' : '' }}" href="{{ route('station') }}">
-                    <i class="fas fa-home"></i>
-                    <span>Station</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('town') ? 'active' : '' }}" href="{{ route('town') }}">
-                    <i class="fas fa-map-marker"></i>
-                    <span>Town</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('type') ? 'active' : '' }}" href="{{ route('type') }}">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Type</span>
-                </a>
-            </li>
+            @if(Auth::user()->type->nameType == "Admin")           
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('station') ? 'active' : '' }}" href="{{ route('station') }}">
+                        <i class="fas fa-home"></i>
+                        <span>Station</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('town') ? 'active' : '' }}" href="{{ route('town') }}">
+                        <i class="fas fa-map-marker"></i>
+                        <span>Town</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('type') ? 'active' : '' }}" href="{{ route('type') }}">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Type</span>
+                    </a>
+                </li>               
+            @endif
         </ul>
         <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
     </div>

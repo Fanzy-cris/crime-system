@@ -16,6 +16,7 @@ class TownsSeeder extends Seeder
         //
         // Liste des villes du Cameroun
     $towns = [
+        "Admin",
         "Adamaoua",
         "Ngaoundéré",
         "Akonolinga",

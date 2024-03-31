@@ -16,7 +16,7 @@ class TypeController extends Controller
     public function index()
     {
         if ($this->checkIfAdmin()) {
-            $types = Type::all();
+            $types = Type::where('nameType','!=','Admin')->orderBy('nameType','asc')->paginate(4);
 
             return view('admin.types.index', compact('types'));     
         }
@@ -51,14 +51,14 @@ class TypeController extends Controller
     {
         if ($this->checkIfAdmin()) {
             $request->validate([
-                'nameType' => 'required|string|max:254',
+                'nameType' => 'required|string|max:254|unique:types',
             ]);
     
             $type = new Type();
             $type->nameType = $request->input('nameType');
             $type->save();
     
-            return redirect()->route('admin.types.index'); 
+            return redirect()->route('type')->with('message', 'Success'); 
         }
         return view('error.index');
 
@@ -114,14 +114,14 @@ class TypeController extends Controller
     {
         if ($this->checkIfAdmin()) {
             $request->validate([
-                'nameType' => 'required|string|max:254',
+                'nameType' => 'required|string|max:254|unique:types',
             ]);
     
             $type = Type::findOrFail($id);
             $type->nameType = $request->input('nameType');
             $type->save();
     
-            return redirect()->route('admin.types.index'); 
+            return redirect()->route('type')->with('message', 'Success'); 
         }
         return view('error.index');
 
@@ -141,7 +141,7 @@ class TypeController extends Controller
             $type = Type::findOrFail($id);
             $type->delete();
     
-            return redirect()->route('admin.types.index');
+            return redirect()->route('type')->with('message', 'Success');
             
         }
         return view('error.index');

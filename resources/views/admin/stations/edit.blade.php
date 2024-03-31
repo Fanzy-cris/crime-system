@@ -4,47 +4,7 @@
 <div class="container-fluid">
     <h3 class="text-dark mb-4">Update town</h3>
     <div class="row mb-3">
-        <div class="col-lg-4">
-            <div class="card mb-3">
-                <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4"
-                        src="../assets/img/dogs/police1.jpeg" width="220" height="220">
-                    <div class="mb-3"></div>
-                </div>
-            </div>
-        </div>
         <div class="col-lg-8">
-            <div class="row mb-3 d-none">
-                <div class="col">
-                    <div class="card text-white bg-primary shadow">
-                        <div class="card-body">
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <p class="m-0">Peformance</p>
-                                    <p class="m-0"><strong>65.2%</strong></p>
-                                </div>
-                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
-                            </div>
-                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card text-white bg-success shadow">
-                        <div class="card-body">
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <p class="m-0">Peformance</p>
-                                    <p class="m-0"><strong>65.2%</strong></p>
-                                </div>
-                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
-                            </div>
-                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col">
                     <div class="card shadow mb-3">
@@ -52,29 +12,35 @@
                             <p class="text-primary m-0 fw-bold">update station</p>
                         </div>
                         <div class="card-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="username"><strong>station
-                                                    Name</strong></label><input class="form-control" type="text"
-                                                id="username-1" name="stationName"></div>
+                            @if($policeStation->count() && $towns->count())
+                                <form method="POST" action="{{ route('station.update', $policeStation->id) }}">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="username">
+                                                    <strong>station Name</strong>
+                                                </label>
+                                                <input class="form-control" type="text" id="username-1" placeholder="{{ $policeStation->stationName }}" name="stationName">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="email"><strong>station
-                                                    Latitude</strong></label><input class="form-control" type="email"
-                                                id="email-1" name="stationLatitude"></div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <select class="form-select form-control-user @error('town_id') is-invalid @enderror" name="town_id">
+                                                    @foreach ($towns as $town )
+                                                        <option value="{{$town->id}}">{{$town->townName}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>station
-                                                    Longitude</strong></label><input class="form-control" type="text"
-                                                id="first_name-1" name="stationLongitude"></div>
+                                    <div class="mb-3">
+                                        <button class="btn btn-primary btn-sm" type="submit">SAVE</button>
                                     </div>
-                                </div>
-                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">SAVE</button>
-                                </div>
-                            </form>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>

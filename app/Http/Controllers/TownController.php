@@ -17,10 +17,8 @@ class TownController extends Controller
     public function index()
     {
         if ($this->checkIfAdmin()) {
-            $towns = Town::all();
-
-            return view('admin.towns.index', compact('towns'));  
-            
+            $towns = Town::where('townName','!=','Admin')->orderBy('townName','asc')->paginate(10);
+            return view('admin.towns.index', compact('towns'));
         }
         return view('error.index');
 
@@ -54,14 +52,14 @@ class TownController extends Controller
         if ($this->checkIfAdmin()) {
             
             $request->validate([
-                'townName' => 'required|string|max:255',
+                'townName' => 'required|string|max:255|unique:towns',
             ]);
     
             $town = new Town();
             $town->townName = $request->input('townName');
             $town->save();
     
-            return redirect()->route('admin.towns.index');  
+            return redirect()->route('town')->with('message', 'Success');  
         }
         return view('error.index');
 
@@ -118,14 +116,14 @@ class TownController extends Controller
         if ($this->checkIfAdmin()) {
             
             $request->validate([
-                'townName' => 'required|string|max:255',
+                'townName' => 'required|string|max:255|unique:towns',
             ]);
     
             $town = Town::findOrFail($id);
             $town->townName = $request->input('townName');
             $town->save();
     
-            return redirect()->route('admin.towns.index');
+            return redirect()->route('town')->with('message', 'Success');
             
         }
         return view('error.index');
@@ -146,7 +144,7 @@ class TownController extends Controller
             $town = Town::findOrFail($id);
             $town->delete();
     
-            return redirect()->route('admin.towns.index');  
+            return redirect()->route('town')->with('message', 'Success');  
             
         }
         return view('error.index');
