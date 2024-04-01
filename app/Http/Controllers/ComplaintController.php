@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ComplaintNotificationReject;
 use App\Models\Complaints;
-use App\Models\PoliceStation;
 use Illuminate\Http\Request;
+use App\Models\PoliceStation;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ComplaintNotificationValide;
 
 class ComplaintController extends Controller
 {
@@ -19,10 +23,7 @@ class ComplaintController extends Controller
         // Récupérer le nom de la station de police de l'utilisateur authentifié
         $nameStation = auth()->user()->policeStation->name;
 
-        // Récupérer les plaintes en fonction du nom de la station
-        $complaints = Complaints::whereHas('policeStation', function ($query) use ($nameStation) {
-            $query->where('stationName', $nameStation);
-        })->get();
+        $complaints = Complaints::orderBy('state','asc')->paginate(10);
 
         return view('admin.complaints.index', compact('complaints'));
     }
@@ -34,8 +35,7 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        $policeStations = PoliceStation::all();
-
+        $policeStations = PoliceStation::where('stationName','!=','Admin')->with('town')->get();
         return view('complaints.create', compact('policeStations'));
     }
 
@@ -53,8 +53,7 @@ class ComplaintController extends Controller
             'contentComplaints' => 'required|string',
             'nameUserComplaint' => 'required|string|max:255',
             'userEmailComplaint' => 'required|email',
-            'phoneNumComplain' => 'required|integer',
-            'state' => 'required|integer',
+            'phoneNumComplain' => 'required|regex:/^[0-9\s\-\(\)]{7,10}$/|max:10',
         ]);
 
         $complaint = new Complaints();
@@ -64,10 +63,10 @@ class ComplaintController extends Controller
         $complaint->nameUserComplaint = $request->input('nameUserComplaint');
         $complaint->userEmailComplaint = $request->input('userEmailComplaint');
         $complaint->phoneNumComplain = $request->input('phoneNumComplain');
-        $complaint->state = $request->input('state');
         $complaint->save();
 
-        return redirect()->route('complaints.index');
+        return redirect()->route('complaint.create')->with('message', 'Success');
+    
     }
 
     /**
@@ -80,7 +79,7 @@ class ComplaintController extends Controller
     {
         $complaint = Complaints::findOrFail($id);
 
-        return view('complaints.show', compact('complaint'));
+        return view('admin.complaints.show', compact('complaint'));
     }
 
     /**
@@ -106,27 +105,30 @@ class ComplaintController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        
         $request->validate([
-            'police_station_id' => 'required|integer',
-            'objectComplaints' => 'required|string|max:255',
-            'contentComplaints' => 'required|string',
-            'nameUserComplaint' => 'required|string|max:255',
-            'userEmailComplaint' => 'required|email',
-            'phoneNumComplain' => 'required|integer',
-            'state' => 'required|integer',
+            'state' => 'required|integer|in:0,1',
+            'datetime' => 'required|date_format:Y-m-d\TH:i',
         ]);
 
         $complaint = Complaints::findOrFail($id);
-        $complaint->police_station_id = $request->input('police_station_id');
-        $complaint->objectComplaints = $request->input('objectComplaints');
-        $complaint->contentComplaints = $request->input('contentComplaints');
-        $complaint->nameUserComplaint = $request->input('nameUserComplaint');
-        $complaint->userEmailComplaint = $request->input('userEmailComplaint');
-        $complaint->phoneNumComplain = $request->input('phoneNumComplain');
-        $complaint->state = $request->input('state');
-        $complaint->save();
+       
+        if ($request->input('state') == 1) {
 
-        return redirect()->route('complaints.index');
+            $complaint->state = $request->input('state');
+            $complaint->save();
+
+            // Envoi de l'e-mail à l'utilisateur
+            $datetime = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('datetime'))->format('d/m/Y H:i');
+            Mail::to($complaint->userEmailComplaints)->send(new ComplaintNotificationValide($complaint, $datetime));
+
+        }elseif ($request->input('state') == 0) {
+            Mail::to($complaint->userEmailComplaints)->send(new ComplaintNotificationReject($complaint));
+            $complaint->delete();
+        }
+
+        return redirect()->route('complaint')->with('message', 'Success');
     }
 
     public function destroy($id)
@@ -134,6 +136,6 @@ class ComplaintController extends Controller
         $complaint = Complaints::findOrFail($id);
         $complaint->delete();
 
-        return redirect()->route('complaints.index');
+        return redirect()->route('complaint')->with('message', 'Success');
     }
 }

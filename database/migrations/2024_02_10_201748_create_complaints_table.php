@@ -14,14 +14,13 @@ return new class extends Migration
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
             $table->foreignId('police_station_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
             $table->string('objectComplaints');
             $table->string('contentComplaints');
             $table->string('nameUserComplaints');
             $table->string('userEmailComplaints');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->integer('userNumComplaints');
-            $table->string('state');
+            $table->string('userNumComplaints');
+            $table->tinyInteger('state')->default(0);
+            $table->timestamps();
         });
     }
 
