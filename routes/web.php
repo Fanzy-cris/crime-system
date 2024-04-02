@@ -7,6 +7,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\DashController;
 use App\Http\Controllers\PoliceStationController;
 
 /*
@@ -24,9 +25,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::get('/complaint/create', [ComplaintController::class, 'create'])->name('complaint.create');
@@ -34,8 +33,8 @@ Route::post('/complaint', [ComplaintController::class, 'store'])->name('complain
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::patch('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');

@@ -8,12 +8,19 @@
 </head>
 <body>
     <p>
-        Bonjour,<br><br>
+        Hello,<br><br>
         
-        Votre plainte concernant "{{ $objectComplaints }}" a été rejété. Veuillez réessayer.<br><br>
-        
-        Merci,<br>
-        Votre équipe de support
+        We regret to inform you that your complaint about {{ $objectComplaints }} has been rejected.</br></br>
+
+        After careful review, we have determined that there is not enough evidence to support your claim.</br> We apologize for any inconvenience this may cause.</br></br>
+
+        If you would like to resubmit your complaint, please do so with additional information and evidence to support your claim.</br>
+
+        Thank you for your understanding.</br>
+
+        Sincerely,</br>
+
+        Your Support Team
     </p>
 </body>
 </html>

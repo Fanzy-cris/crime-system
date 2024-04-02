@@ -15,7 +15,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('policeStation', 'type')->get();
+        $idStation = auth()->user()->policeStation->id;
+        if ($this->checkIfAdmin()) {
+            $users = User::with('policeStation', 'type')->orderBy('nameUser','asc')->paginate(5);
+        }else{
+            $users = User::with('policeStation', 'type')->where('police_station_id',$idStation)->orderBy('nameUser','asc')->paginate(5);
+        }
 
         return view('admin.users.index', compact('users'));
     }
@@ -135,11 +140,25 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return redirect()->route('admin.users.index');
+        if ($this->checkIfAdmin()) {
+            $user = User::findOrFail($id);
+            $user->delete();
+    
+            return redirect()->route('user')->with('message', 'Success');
+        }
+        if(auth()->user()->type->nameType == "Chief of Police"){
+            return redirect()->route('user')->with('message', 'Success');
+        }else {
+            return redirect()->route('user')->with('message', 'No permission');
+        }
     }
 
+    private function checkIfAdmin()
+    {
+        if (auth()->user()->type->nameType == "Admin") {
+            return true;
+        }
+        return false;
+    }
 
 }

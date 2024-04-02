@@ -17,12 +17,14 @@
                     <span>Profile</span>
                 </a>
             </li>
+            @if(Auth::user()->type->nameType == "Admin" || Auth::user()->type->nameType == "Chief of Police")
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('user') ? 'active' : '' }}" href="{{ route('user') }}">
                     <i class="fas fa-users"></i>
                     <span>User</span>
                 </a>
-            </li>
+            </li>            
+            @endif
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('complaint') ? 'active' : '' }}" href="{{ route('complaint') }}">
                     <i class="fas fa-newspaper"></i>

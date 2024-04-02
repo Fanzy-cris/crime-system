@@ -8,12 +8,19 @@
 </head>
 <body>
     <p>
-        Bonjour,<br><br>
+        Hello,<br><br>
         
-        Votre plainte concernant "{{ $objectComplaints }}" a été prise en compte. La date du rendez-vous est prévue pour le {{ $datetime }}.<br><br>
-        
-        Merci,<br>
-        Votre équipe de support
+        We are writing to inform you that your complaint about {{ $objectComplaints }} has been accepted.</br>
+
+        We have scheduled an appointment to discuss your complaint on {{ $datetime }}.</br>
+
+        Please let us know if you are unable to make this appointment.</br>
+
+        Thank you for your patience and understanding.</br>
+
+        Sincerely,</br>
+
+        Your Support Team
     </p>
 </body>
 </html>

@@ -112,7 +112,7 @@
 									<select class="form-select form-control-user @error('StationId') is-invalid @enderror" name="StationId">
 
 										@foreach ( $Stations as $Station  )
-											<option value="{{$Station->id}}">{{$Station->stationName}}</option>
+											<option value="{{$Station->id}}">{{ $Station->town->townName }} || {{$Station->stationName}}</option>
 									 	@endforeach
 									</select>
 								</div>

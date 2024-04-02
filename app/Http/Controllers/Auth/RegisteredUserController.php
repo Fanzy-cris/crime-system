@@ -24,7 +24,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $Stations = PoliceStation::where('id','!=',1)->get();
+        $Stations = PoliceStation::where('stationName','!=','Admin')->where('town_id','!=',1)->with('town')->get();
         $Types = Type::where('id','!=',1)->get();
 
         return view('auth.register', compact('Types', 'Stations'));

@@ -21,9 +21,12 @@ class ComplaintController extends Controller
     public function index()
     {
         // Récupérer le nom de la station de police de l'utilisateur authentifié
-        $nameStation = auth()->user()->policeStation->name;
-
-        $complaints = Complaints::orderBy('state','asc')->paginate(10);
+        $idStation = auth()->user()->policeStation->id;
+        if ($this->checkIfAdmin()) {
+            $complaints = Complaints::orderBy('state','asc')->paginate(10);
+        }else{    
+            $complaints = Complaints::where('police_station_id',$idStation)->orderBy('state','asc')->paginate(10);
+        }
 
         return view('admin.complaints.index', compact('complaints'));
     }
@@ -137,5 +140,13 @@ class ComplaintController extends Controller
         $complaint->delete();
 
         return redirect()->route('complaint')->with('message', 'Success');
+    }
+
+    private function checkIfAdmin()
+    {
+        if (auth()->user()->type->nameType == "Admin") {
+            return true;
+        }
+        return false;
     }
 }

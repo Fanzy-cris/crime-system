@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\User;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -19,36 +22,36 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request, $id)
     {
-        $request->user()->fill($request->validated());
+        $request->validate([
+            'nameUser' => ['required', 'string', 'max:255'],
+            'surNameUser' => ['required', 'string', 'max:255'],
+            'phoneUser' => ['required', 'regex:/^[0-9\s\-\(\)]{7,10}$/', 'max:10'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        
+        $user = User::findOrFail($id);
+        $user->nameUser = $request->input('nameUser');
+        $user->surNameUser = $request->input('surNameUser');
+        $user->phoneUser = $request->input('phoneUser');
+        $user->password = Hash::make($request->password);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+        $user->save();
 
-        $request->user()->save();
-
-        return Redirect::route('admin.profile.index')->with('status', 'profile-updated');
+        return Redirect::route('profile')->with('message', 'profile-updated');
     }
 
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy($id)
     {
-        /*$request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);*/
-
-        $user = $request->user();
 
         Auth::logout();
 
+        $user = User::findOrFail($id);
         $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
 
         return Redirect::to('/');
     }
