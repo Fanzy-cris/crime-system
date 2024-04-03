@@ -21,9 +21,13 @@ use App\Http\Controllers\PoliceStationController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
+
+Route::get('/', function () {
+    return view('home.index');
+})->name('home');
 
 Route::get('/dashboard', [DashController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

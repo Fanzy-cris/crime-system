@@ -39,7 +39,7 @@ class ComplaintController extends Controller
     public function create()
     {
         $policeStations = PoliceStation::where('stationName','!=','Admin')->with('town')->get();
-        return view('complaints.create', compact('policeStations'));
+        return view('home.register_complaint', compact('policeStations'));
     }
 
     /**
@@ -63,9 +63,9 @@ class ComplaintController extends Controller
         $complaint->police_station_id = $request->input('police_station_id');
         $complaint->objectComplaints = $request->input('objectComplaints');
         $complaint->contentComplaints = $request->input('contentComplaints');
-        $complaint->nameUserComplaint = $request->input('nameUserComplaint');
-        $complaint->userEmailComplaint = $request->input('userEmailComplaint');
-        $complaint->phoneNumComplain = $request->input('phoneNumComplain');
+        $complaint->nameUserComplaints = $request->input('nameUserComplaints');
+        $complaint->userEmailComplaints = $request->input('userEmailComplaints');
+        $complaint->userNumComplaints = $request->input('userNumComplaints');
         $complaint->save();
 
         return redirect()->route('complaint.create')->with('message', 'Success');
