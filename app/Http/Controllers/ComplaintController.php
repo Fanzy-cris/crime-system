@@ -54,9 +54,9 @@ class ComplaintController extends Controller
             'police_station_id' => 'required|integer',
             'objectComplaints' => 'required|string|max:255',
             'contentComplaints' => 'required|string',
-            'nameUserComplaint' => 'required|string|max:255',
-            'userEmailComplaint' => 'required|email',
-            'phoneNumComplain' => 'required|regex:/^[0-9\s\-\(\)]{7,10}$/|max:10',
+            'nameUserComplaints' => 'required|string|max:255',
+            'userEmailComplaints' => 'required|email',
+            'userNumComplaints' => 'required|regex:/^[0-9\s\-\(\)]{7,10}$/|max:10',
         ]);
 
         $complaint = new Complaints();

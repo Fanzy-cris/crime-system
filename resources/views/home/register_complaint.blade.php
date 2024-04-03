@@ -56,6 +56,7 @@
                     </div>
                 </div>
                 <form method="POST" action="{{ route('complaint.store') }}" class="border rounded border-0 shadow-lg p-3 p-md-5" data-bs-theme="light">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6 text-nowrap">
                             @if ( $message = session('message'))
@@ -162,7 +163,7 @@
                         </div>
                     </div>
                     <div style="padding-left: 0px;padding-right: 0px;text-align: right;">
-                        <<button class="btn btn-primary" type="button" style="width: 107.2656px;margin: 0px;margin-top: 28px;margin-right: 0px;padding-left: 12px;">
+                        <button class="btn btn-primary" type="submit" style="width: 107.2656px;margin: 0px;margin-top: 28px;margin-right: 0px;padding-left: 12px;">
                             Submit
                         </button>
                     </div>
