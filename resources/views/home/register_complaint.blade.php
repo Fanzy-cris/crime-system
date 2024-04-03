@@ -28,7 +28,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.html">
+                            <a class="nav-link" href="/">
                                 Home
                             </a>
                         </li>
@@ -176,7 +176,7 @@
                     <a href="#">
                         About Us
                     </a>
-                    <a href="#">
+                    <a href="{{ route('complaint.create') }}">
                         Report a Crime
                     </a>
                 </div>
